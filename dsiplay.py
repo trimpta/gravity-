@@ -11,11 +11,11 @@ pygame.init()
 screen = pygame.display.set_mode((1920,1080))
 pygame.display.set_caption('SEX')
 clock = pygame.time.Clock()
-font = pygame.font.Font('images/Pixeltype.ttf', 100)
-sky=pygame.image.load('images/bg/init.jpg')
+font = pygame.font.Font('Pixeltype.ttf', 100)
+sky=pygame.image.load('init.jpg')
 textsurface=font.render('Welcome', False , 'White')
-planet=pygame.image.load('images/planet.png')
-planet2=pygame.image.load('images/planet.png')
+planet=pygame.image.load('planet.png')
+planet2=pygame.image.load('planet.png')
 
 while True:  
     xa,ya=a.pos.i,a.pos.j
