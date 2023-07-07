@@ -2,35 +2,53 @@ import pygame
 from shjit import mass
 from vectorshit import vector
 from sys import exit
-a = mass(10000000,vector(-100,10,0),vector(0,0,0))
-b = mass(10000000,vector(-100,5000,0),vector(0,0,0))
-
-
-
+history = []
+def historything(coords):
+    history.append(coords)
+    valuething = len(history) if len(history)<10000 else 10000
+    for i in history[-1:-valuething:-1]:
+        pygame.draw.circle(screen,'chocolate1',i,1,0)
+h= 1920
+w=1080
+i = 32
+def update():
+    for i in all:
+        i.update()
+def updatee():
+    for i in all:
+        i.netforcegravity((all))
+def blitz():
+    for i in all:
+        screen.blit(planet,i.displaypos())
 pygame.init()
-screen = pygame.display.set_mode((1920,1080))
-pygame.display.set_caption('SEX')
+pygame.display.set_caption('??')
+screen = pygame.display.set_mode((h,w))
 clock = pygame.time.Clock()
-font = pygame.font.Font('Pixeltype.ttf', 100)
-sky=pygame.image.load('init.jpg')
-textsurface=font.render('Welcome', False , 'White')
-planet=pygame.image.load('planet.png')
-planet2=pygame.image.load('planet.png')
 
-while True:  
-    xa,ya=a.pos.i,a.pos.j
-    xb,yb=b.pos.i,b.pos.j
+bg=pygame.image.load('init.jpg')
+planet=pygame.image.load('planet.png')
+
+a = mass(1000000,vector(0,100,0),vector(0.1,0,0))
+b = mass(1000000,vector(0,-100,0),vector(-0.1,0,0))
+all = [a,b]
+def lines():
+    ci = 16
+    for i in all:
+        for j in all:
+            if i!=j:
+                idisp = i.displaypos()
+                jdisp = j.displaypos()
+                idis=(idisp[0]+ci,idisp[1]+ci)
+                jdis=(jdisp[0]+ci,jdisp[1]+ci)
+                
+                pygame.draw.line(screen, (140, 146, 172),idis,jdis,width=1)
+while True: 
+    screen.blit(bg,(0,0))
     
-    a.accelerate(a.einstiennnewotngravityshitthing(b))
-    a.update()
-    b.accelerate(b.einstiennnewotngravityshitthing(a))
-    b.update()
-    screen.blit(sky,(0,0))
-    screen.blit(planet,(xa+1980/2,ya+1080/2))
-    screen.blit(planet2,(xb+1980/2,yb+1080/2))
-    #screen.blit(textsurface,(300,300))
-    print(xa,ya,"\n",xb,yb)
+    lines()
+    blitz()
+    updatee()
+    update()
+    
     pygame.display.update()
     clock.tick(60)
-
-  
