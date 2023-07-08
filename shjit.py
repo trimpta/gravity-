@@ -15,7 +15,7 @@ class mass:
     
 
     def accelerate(self,force):
-        acc=force*(1/self.mass)
+        acc=force/self.mass
         self.vel+=acc
     
     def update(self):
@@ -24,9 +24,12 @@ class mass:
     def gravity(self,other):
         diff = self.pos-other.pos
         distance=diff.magnitude
-        c = -1*(self.G*self.mass*other.mass)/distance
-        F = diff*c
-        return F
+        if distance!=0:
+            c = -1*(self.G*self.mass*other.mass)/distance
+            F = diff*c
+            return F
+        else:
+            return vector(0,0,0)
 
     def netforcegravity(self,all):
         for i in all:
