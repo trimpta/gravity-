@@ -59,8 +59,8 @@ pygame.display.set_caption('??')
 screen = pygame.display.set_mode((h,w))
 clock = pygame.time.Clock()
 
-bg=pygame.image.load('images/bg/init.jpg')
-planet=pygame.image.load('images/planet.png')
+bg=pygame.image.load('init.jpg')
+planet=pygame.image.load('planet.png')
 
 all = []
 font = pygame.font.SysFont('chalkduster.ttf', 40)
