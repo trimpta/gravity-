@@ -1,9 +1,8 @@
 global h
 global w
 global i
-h = 1920
-w = 1080
-i = 16
+h,w= 1920,1080
+i = 32
 from vectorshit import vector
 class mass:
 
