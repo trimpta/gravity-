@@ -4,6 +4,7 @@ class vector:
         self.j=j
         self.k=k
         self.magnitude=(i*i+j*j+k*k)**0.5
+        self.rval = f"i:{round(self.i,2)} j:{round(self.j,2)} k:{round(self.k,2)}" 
     def __repr__(self):
         return f"i:{self.i} j:{self.j} k:{self.k}"
     def __add__(self,other):
@@ -34,7 +35,7 @@ class vector:
     def __float__(self):
         return self.magnitude
     def __gt__(self,other):
-        if isinstance(self,other):
+        if isinstance(self,vector):
             return self.magnitude>other.magnitude
         else:
             return self.magnitude>abs(other)
