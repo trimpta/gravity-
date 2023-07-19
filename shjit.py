@@ -36,3 +36,5 @@ class mass:
                 self.accelerate(self.gravity(i))
     def displaypos(self):
         return ((self.pos.i-i/2+h/2),(self.pos.j-i/2+w/2))
+    def __repr__(self):
+        return f"mass({self.mass},{self.pos},{self.vel})"

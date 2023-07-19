@@ -6,28 +6,11 @@ history = []
 
 def historything(coords):
     history.append(coords)
-    valuething = len(history) if len(history)<10000 else 10000
-    r=g=b=0
-    ra=ga=ba=1
+    valuething = len(history) if len(history)<800 else 800
+    ra='yellow'
     for i in history[-1:-valuething:-1]:
-        pygame.draw.circle(screen,(r,g,b),i,1,0)
-    r+=ra*5
-    if r==255:
-        ra=-1
-    if r==0:
-        ra=1
+        pygame.draw.circle(screen,ra,i,1,0)
     
-    g+=ga*5
-    if g==255:
-        ga=-1
-    if g==0:
-        ga=1
-    
-    b+=ba*5
-    if b==255:
-        ba=-1
-    if b==0:
-        ba=1
 def mouse():
     return pygame.mouse.get_pos()        
 def trails():
@@ -76,8 +59,7 @@ clock = pygame.time.Clock()
 bg=pygame.image.load('init.jpg')
 planet=pygame.image.load('planet.png')
 font = pygame.font.SysFont('chalkduster.ttf', 40)
-
-
+diffa=[]
 while run: 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -96,12 +78,16 @@ while run:
         if event.type == pygame.MOUSEBUTTONDOWN and not (mouse()[0]<320 and mouse()[0]>240 and mouse()[1]<940 and mouse()[1]>860):
             mousev = pygame.mouse.get_pos()
             all.append(mass(default_mass,vector(mousev[0]-h/2,mousev[1]-w/2,0)))
+            history.clear()
         if event.type == pygame.MOUSEBUTTONUP and not (mouse()[0]<320 and mouse()[0]>240 and mouse()[1]<940 and mouse()[1]>860):
             initpos = vector(mousev[0],mousev[1],0)
             mofi = pygame.mouse.get_pos()
             finalpos = vector(mofi[0],mofi[1],0)
             scaledvel=finalpos-initpos
             all[-1].vel+=-scaledvel/20
+            if diffa!=all:
+                diffa.append(all[-1])
+                print(all[-1])
         if mouse()[0]<320 and mouse()[0]>240 and mouse()[1]<940 and mouse()[1]>860:
             ccol = (22, 22, 22)
         else:
@@ -111,15 +97,16 @@ while run:
                 pass
             else:
                 all.clear()
+                history.clear()
         
-        
+    
     
     screen.blit(bg,(0,0))
     lines()
     blitz()
     updatee()
     update()
-    #trails()
+    trails()
     greatest=greater=vector(0,0,0)
     for i in all:
         if i.vel>greatest:
